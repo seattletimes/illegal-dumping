@@ -5,19 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <style>.embed-container {position: relative; padding-bottom: 80%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}</style>
     <%= t.include("partials/_head.html") %>
   </head>
   <body>
 
     <responsive-child>
-      <leaflet-map lat="47.625" lng="-122.28" zoom=12>
-        <tile-layer layer="cartoPositron"></tile-layer>
-      </leaflet-map>    
+
+      <div class="aspect-ratio-outer">
+        <div class="aspect-ratio-inner">
+          <div class="embed-container">
+            <iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="Density-dumping" src="https://seattletimes.maps.arcgis.com/apps/Embed/index.html?webmap=6b1dc45bb6d7485ab294ff87e96a4877&amp;extent=-122.5891,47.4933,-122.0875,47.749&amp;home=true&amp;zoom=true&amp;scale=true&amp;disable_scroll=true&amp;theme=light"></iframe>
+          </div>  
+        </div>
+      </div>
+       
     </responsive-child>
 
-    <script>
-      var dumpData = <%= JSON.stringify(json.dumpTest_Sheet1) %>;
-    </script>
     <script src="app.js" async></script>
     <% if (json.project.production) { %>
     <%= !json.project.embedded ? t.include("partials/_foot.html") : "" %>
